@@ -1,6 +1,4 @@
-# API & Backend ONLY - No ML libraries
 fastapi==0.104.1
 uvicorn==0.24.0
-pydantic==2.5.0
-requests==2.31.0
-python-dotenv==1.0.0
+starlette==0.27.0
+pydantic-core==2.10.1
