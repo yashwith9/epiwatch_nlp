@@ -173,16 +173,19 @@ def generate_sample_alerts():
 
 def generate_sample_trends():
     """Generate sample 7-day trend data"""
-    diseases = ["Dengue", "Malaria", "Cholera", "Yellow Fever", "Measles", "Influenza"]
+    import random
+    
+    # Match diseases with alerts
+    diseases = ["Dengue", "Malaria", "Cholera", "Typhoid", "Yellow Fever", "Measles"]
     trends = {}
     
     for disease in diseases:
         data = []
-        base = np.random.randint(20, 100)
+        base = random.randint(20, 100)
         
         for i in range(7):
             date = datetime.now() - timedelta(days=6-i)
-            count = base + np.random.randint(-20, 40)
+            count = base + random.randint(-20, 40)
             data.append({
                 "date": date.strftime("%Y-%m-%d"),
                 "count": max(0, count)
