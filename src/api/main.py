@@ -247,11 +247,19 @@ async def get_stats():
     # Calculate total cases from all alerts
     total_cases = sum(alert['case_count'] for alert in alerts)
     
+    # Extract unique countries from alerts (locations have format "City, Country")
+    countries = set()
+    for alert in alerts:
+        location_parts = alert['location'].split(', ')
+        if len(location_parts) >= 2:
+            country = location_parts[-1]
+            countries.add(country)
+    
     return {
         "total_cases": total_cases,
-        "countries": 6,
+        "countries": len(countries),  # Dynamic count of unique countries
         "critical_alerts": 1,
-        "regions_monitored": 6,
+        "regions_monitored": len(alerts),
         "active_alerts": len(alerts),
         "last_update": datetime.now().isoformat()
     }
